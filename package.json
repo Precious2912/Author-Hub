@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start:docker": "yarn build && yarn start",
     "compile": "tsc -w",
+    "build": "rimraf dist && tsc",
     "serve": "nodemon ./bin/www",
     "test": "jest --detectOpenHandles --runInBand"
   },
@@ -22,6 +24,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.19",
+    "rimraf": "^3.0.2",
     "sequelize": "^6.21.3",
     "sqlite3": "^5.0.11",
     "supertest": "^6.2.4",
