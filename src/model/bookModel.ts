@@ -8,6 +8,7 @@ interface BookAttributes {
     isPublished: boolean,
     datePublished: number,
     serialNumber: number,
+    imageURL: string,
     userId: string,
 }
 
@@ -51,12 +52,13 @@ BookInstance.init({
         type: DataTypes.NUMBER,
         allowNull: false
     },
+
+    imageURL: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     userId: {
         type: DataTypes.STRING,
-        // references: {
-        //     model: 'users', 
-        //     key: 'id', 
-        //  }
     }
    
 }, 
@@ -64,9 +66,3 @@ BookInstance.init({
     sequelize: db,
     tableName: 'books'
 });
-
-
-
-
-// 'fathers' refers to table name
-// 'id' refers to column name in fathers table

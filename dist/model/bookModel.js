@@ -48,16 +48,14 @@ BookInstance.init({
         type: sequelize_1.DataTypes.NUMBER,
         allowNull: false
     },
+    imageURL: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false
+    },
     userId: {
         type: sequelize_1.DataTypes.STRING,
-        // references: {
-        //     model: 'users', 
-        //     key: 'id', 
-        //  }
     }
 }, {
     sequelize: database_config_1.default,
     tableName: 'books'
 });
-// 'fathers' refers to table name
-// 'id' refers to column name in fathers table

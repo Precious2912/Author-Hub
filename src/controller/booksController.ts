@@ -17,17 +17,12 @@ export async function createBook(req: Request | any, res: Response, next: NextFu
         }
 
         const record = await BookInstance.create({ id, ...req.body, userId: verified.id})
-        // .then((book) => {
-        //     res.render('author', {data: book});
-        //     // res.status(200).json({message: 'working'})
-        // })
         res.status(201).json({
             message: "Book added successfully",
             record
         })
-        // res.redirect('/users/read/:id');
     } catch(err) {
-        res.status(500).json({message: "failed to add book"});
+        res.status(500).json({message: "failed to add book", err: err});
     }
 }
 
@@ -36,10 +31,6 @@ export async function getAllBooks(req: Request, res: Response, next: NextFunctio
 
     try {
         const record = await BookInstance.findAll({where: {}})
-        // .then((book) => {
-        //     // res.render('home', {data: book});
-            
-        // })
 
         res.status(200).json({message: 'getting all books', record})
 
@@ -53,8 +44,6 @@ export async function getBook(req: Request, res: Response, next: NextFunction) {
     try {
         const {id} = req.params;
         const record = await BookInstance.findOne({where: {id}});
-
-        // res.render('home', {data: record});
         res.status(200).json({
             message: `displaying book with id ${id}`,
             record
@@ -69,7 +58,7 @@ export async function updateBook(req: Request, res: Response, next: NextFunction
 
     try {
         const {id} = req.params;
-        const {name, isPublished, datePublished, serialNumber} = req.body;
+        const {name, isPublished, datePublished, serialNumber, imageURL} = req.body;
         const validationResult = updateBookSchema.validate(req.body, options);
 
         if (validationResult.error){
@@ -89,7 +78,8 @@ export async function updateBook(req: Request, res: Response, next: NextFunction
             name, 
             isPublished, 
             datePublished, 
-            serialNumber
+            serialNumber,
+            imageURL
         });
 
         res.status(202).json({

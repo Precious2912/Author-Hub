@@ -7,6 +7,7 @@ export const createBookSchema = Joi.object().keys({
     isPublished: Joi.boolean().required(),
     datePublished: Joi.number().required(),
     serialNumber: Joi.number().required(),
+    imageURL: Joi.string().required()
 })
 
 export const updateBookSchema = Joi.object().keys({
@@ -14,6 +15,7 @@ export const updateBookSchema = Joi.object().keys({
     isPublished: Joi.boolean(),
     datePublished: Joi.number(),
     serialNumber: Joi.number(),
+    imageURL: Joi.string().required()
 })
 
 export const createUserSchema = Joi.object().keys({

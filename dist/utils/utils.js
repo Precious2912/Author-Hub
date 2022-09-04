@@ -11,12 +11,14 @@ exports.createBookSchema = joi_1.default.object().keys({
     isPublished: joi_1.default.boolean().required(),
     datePublished: joi_1.default.number().required(),
     serialNumber: joi_1.default.number().required(),
+    imageURL: joi_1.default.string().required()
 });
 exports.updateBookSchema = joi_1.default.object().keys({
     name: joi_1.default.string().lowercase(),
     isPublished: joi_1.default.boolean(),
     datePublished: joi_1.default.number(),
     serialNumber: joi_1.default.number(),
+    imageURL: joi_1.default.string().required()
 });
 exports.createUserSchema = joi_1.default.object().keys({
     author: joi_1.default.string().lowercase().required(),

@@ -15,27 +15,19 @@ async function createBook(req, res, next) {
             });
         }
         const record = await bookModel_1.BookInstance.create({ id, ...req.body, userId: verified.id });
-        // .then((book) => {
-        //     res.render('author', {data: book});
-        //     // res.status(200).json({message: 'working'})
-        // })
         res.status(201).json({
             message: "Book added successfully",
             record
         });
-        // res.redirect('/users/read/:id');
     }
     catch (err) {
-        res.status(500).json({ message: "failed to add book" });
+        res.status(500).json({ message: "failed to add book", err: err });
     }
 }
 exports.createBook = createBook;
 async function getAllBooks(req, res, next) {
     try {
         const record = await bookModel_1.BookInstance.findAll({ where: {} });
-        // .then((book) => {
-        //     // res.render('home', {data: book});
-        // })
         res.status(200).json({ message: 'getting all books', record });
     }
     catch (err) {
@@ -47,7 +39,6 @@ async function getBook(req, res, next) {
     try {
         const { id } = req.params;
         const record = await bookModel_1.BookInstance.findOne({ where: { id } });
-        // res.render('home', {data: record});
         res.status(200).json({
             message: `displaying book with id ${id}`,
             record
@@ -61,7 +52,7 @@ exports.getBook = getBook;
 async function updateBook(req, res, next) {
     try {
         const { id } = req.params;
-        const { name, isPublished, datePublished, serialNumber } = req.body;
+        const { name, isPublished, datePublished, serialNumber, imageURL } = req.body;
         const validationResult = utils_1.updateBookSchema.validate(req.body, utils_1.options);
         if (validationResult.error) {
             res.status(400).json({
@@ -78,7 +69,8 @@ async function updateBook(req, res, next) {
             name,
             isPublished,
             datePublished,
-            serialNumber
+            serialNumber,
+            imageURL
         });
         res.status(202).json({
             msg: "successfully updated book info",
