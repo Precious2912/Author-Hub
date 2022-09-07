@@ -3,18 +3,18 @@ import express, {Response, Request, NextFunction} from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser'
 import logger from 'morgan';
-import db from './config/database.config'
+// import db from './config/database.config'
 import cors from 'cors'
 
 import usersRouter from './routes/users'
 import booksRouter from './routes/books';
 
-//db sync
-db.sync().then(() => {
-  console.log('database connected succesfully')
-}).catch((err) => {
-  console.log(err)
-})
+// //db sync sequelize
+// db.sync().then(() => {
+//   console.log('database connected succesfully')
+// }).catch((err) => {
+//   console.log(err)
+// })
 
 const app = express();
 // view engine setup

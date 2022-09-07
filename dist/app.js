@@ -8,16 +8,16 @@ const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
-const database_config_1 = __importDefault(require("./config/database.config"));
+// import db from './config/database.config'
 const cors_1 = __importDefault(require("cors"));
 const users_1 = __importDefault(require("./routes/users"));
 const books_1 = __importDefault(require("./routes/books"));
-//db sync
-database_config_1.default.sync().then(() => {
-    console.log('database connected succesfully');
-}).catch((err) => {
-    console.log(err);
-});
+// //db sync sequelize
+// db.sync().then(() => {
+//   console.log('database connected succesfully')
+// }).catch((err) => {
+//   console.log(err)
+// })
 const app = (0, express_1.default)();
 // view engine setup
 app.set('views', path_1.default.join(__dirname, '..', 'views'));

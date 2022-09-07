@@ -8,29 +8,23 @@ import {
   updateUser,
   deleteUser,
   loginUser,
-  // logoutUser,
-  // renderSignUpPage,
-  // renderLoginPage,
+  logoutUser,
   getAllUsersAndBooks,
-  // renderAdminPage
 } from "../controller/usersController";
 
 
-/* GET home page. */
-router.get("/read", getAllUsers);
+// /* GET home page. */
 router.post("/signup", createUser);
 router.post("/login", loginUser);
-router.put("/update/:id", auth, updateUser);
-router.delete("/delete/:id", auth, deleteUser);
-// router.get("/allusers", auth, getAllUsersAndBooks);
+router.get("/read", auth, getAllUsers);
+router.get("/read/:_id", auth, getSingleUser);
+router.put("/update/:_id", auth, updateUser);
+router.delete("/delete/:_id", auth, deleteUser);
+// // router.get("/allusers", auth, getAllUsersAndBooks);
 router.get("/allusers", getAllUsersAndBooks);
-// router.get('/logout', logoutUser);
-router.get("/read/:id", getSingleUser);
+router.get('/logout', logoutUser);
 
-//ejs routes
-// router.get("/signup", renderSignUpPage);
-// router.get("/login", renderLoginPage);
-// router.get("/read/:id", renderAdminPage);
+
 
 
 export default router;
